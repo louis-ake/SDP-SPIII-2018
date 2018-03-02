@@ -14,7 +14,7 @@ import java.math.BigInteger
  * @param b operand b
  * @return the sum
  */
-fun add(a: Int, b: Int): Int = TODO()
+fun add(a: Int, b: Int): Int = a + b
 
 /**
  * Write a function that returns the inclusive Range from start to end.
@@ -25,7 +25,7 @@ fun add(a: Int, b: Int): Int = TODO()
  * @param end the end of the range
  * @return the inclusive Range from start to end
  */
-fun inRange(start: Int, end: Int): IntRange = TODO()
+fun inRange(start: Int, end: Int): IntRange = (start..end)
 
 /**
  * Write a function that returns a Range of odd n odd integers starting at 1.
@@ -35,7 +35,7 @@ fun inRange(start: Int, end: Int): IntRange = TODO()
  * @param n the number of odd integers in the range
  * @return a Range of odd integers, excluding the last add integer
  */
-fun oddRange(n: Int): IntRange = TODO()
+fun oddRange(n: Int): IntProgression = (1 until n*2 step 2)
 
 /**
  * Write a function that returns the minimum integer in the Array r.
@@ -49,7 +49,19 @@ fun oddRange(n: Int): IntRange = TODO()
  * @param r the array of integers
  * @return the minimum integer in the array
  */
-fun minWhile(r: Array<Int>): Int = TODO()
+fun minWhile(r: Array<Int>): Int{
+    var lowest = 0
+    var length = 0
+    for (n in r) {length += 1}
+    while (length > 0) {
+        for (i in r) {
+            if (lowest == 0) { lowest = i }
+            if (i < lowest) { lowest = i }
+            length -= 1
+        }
+    }
+    return lowest
+}
 
 /**
  * Write a function that returns the minimum integer in the Array r.
@@ -63,7 +75,7 @@ fun minWhile(r: Array<Int>): Int = TODO()
  * @param r the array of integers
  * @return the minimum integer in the array
  */
-fun minFor(r: Array<Int>): Int = TODO()
+fun minFor(r: Array<Int>): Int? = r.min()
 
 /**
  * Write a function called minRecursive that returns the minimum integer in the Array r.
@@ -89,7 +101,7 @@ fun minRecursive(r: Array<Int>): Int = TODO()
  * @param b a big integer
  * @return the base 36 equivalent
  */
-fun base36(b: BigInteger): String = TODO()
+fun base36(b: BigInteger): String = b.toString(36)
 
 /**
  * Splits the String s in half.
@@ -112,7 +124,15 @@ fun base36(b: BigInteger): String = TODO()
  * @param s the string to split
  * @return the split string as a tuple
  */
-fun splitInHalf(s: String): Pair<String, String> = TODO()
+fun splitInHalf(s: String): Pair<String, String> {
+    var length = 0
+    for (c in s) {
+        length += 1
+    }
+    var first = s.slice(0..length/2)
+    var second = s.slice(length/2..length)
+    return Pair(first, second)
+}
 
 /**
  * Determines if the given string s is a palindrome.
@@ -178,6 +198,6 @@ fun isPalindrome(s: String): Boolean = TODO()
  * @param lines the lines of a text file
  * @return a map from words to the number of times that word was seen
  */
-fun wordCounter(lines: Array<String>): Map<String, Int> = TODO()
+fun wordCounter(lines: Array<String>): Map<String, Int> {}
 
 
