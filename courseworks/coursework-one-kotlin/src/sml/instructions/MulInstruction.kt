@@ -3,7 +3,7 @@ package sml.instructions
 import sml.Instruction
 import sml.Machine
 
-class MulInstructionInstruction(label: String, val result: Int, val op1: Int, val op2: Int) : Instruction(label, "add") {
+class MulInstruction(label: String, val result: Int, val op1: Int, val op2: Int) : Instruction(label, "add") {
 
     override fun execute(m: Machine) {
         val value1 = m.registers.getRegister(op1)

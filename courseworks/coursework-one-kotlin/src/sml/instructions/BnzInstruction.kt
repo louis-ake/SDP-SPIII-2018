@@ -8,14 +8,12 @@ class BnzInstruction(label: String, val op: Int, label2: String) : Instruction(l
     val inst = label2
 
     override fun execute(m: Machine) {
+        println(m.prog)
+        println(this.label + inst)
         val value = m.registers.getRegister(op)
         if (value != 0) {
-            m.getInstruction(inst)
-            m.execute()
+            m.prog.add(m.getInstruction(inst))
         }
-    }
-
-    fun toString(label2: String): String {
-        return super.toString() + " executing instruction " + label2
+        println(m.prog)
     }
 }

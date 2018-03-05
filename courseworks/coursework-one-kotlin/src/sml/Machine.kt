@@ -1,9 +1,6 @@
 package sml
 
-import sml.instructions.AddInstruction
-import sml.instructions.LinInstruction
-import sml.instructions.NoOpInstruction
-import sml.instructions.OutInstruction
+import sml.instructions.*
 import java.io.File
 import java.io.IOException
 import java.util.Scanner
@@ -108,14 +105,36 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
                 s2 = scanInt()
                 AddInstruction(label, r, s1, s2)
             }
+            "sub" -> {
+                r = scanInt()
+                s1 = scanInt()
+                s2 = scanInt()
+                SubInstruction(label, r, s1, s2)
+            }
+            "mul" -> {
+                r = scanInt()
+                s1 = scanInt()
+                s2 = scanInt()
+                MulInstruction(label, r, s1, s2)
+            }
+            "div" -> {
+                r = scanInt()
+                s1 = scanInt()
+                s2 = scanInt()
+                DivInstruction(label, r, s1, s2)
+            }
+            "out" -> {
+                s1 = scanInt()
+                OutInstruction(label, s1)
+            }
             "lin" -> {
                 r = scanInt()
                 s1 = scanInt()
                 LinInstruction(label, r, s1)
             }
-            "out" -> {
+            "bnz" -> {
                 s1 = scanInt()
-                OutInstruction(label, s1)
+                BnzInstruction(label, s1, label2 = scan())
             }
             else -> {
                 NoOpInstruction(label, line)
