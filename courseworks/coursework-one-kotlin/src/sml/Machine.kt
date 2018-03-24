@@ -3,8 +3,15 @@ package sml
 import sml.instructions.*
 import java.io.File
 import java.io.IOException
+import java.lang.reflect.Constructor
 import java.util.Scanner
 import kotlin.collections.ArrayList
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createInstance
+import kotlin.reflect.full.declaredMemberFunctions
+import kotlin.reflect.full.memberFunctions
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
+import kotlin.reflect.jvm.internal.impl.serialization.ProtoBuf
 
 /*
  * The machine language interpreter
@@ -93,7 +100,20 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
      * Translate line into an instruction with label label and return the instruction
      */
     fun getInstruction(label: String): Instruction {
-        val s1: Int // Possible operands of the instruction
+        val insL = scan()
+        val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
+        //val cls = Class.forName(ins).kotlin
+        val cls: KClass<String> = ins::class as KClass<String>
+        for (m in cls.constructors) {
+            println(m)
+        }
+        return cls.createInstance() as Instruction
+
+        //val cons = cls.constructors
+
+
+
+        /*val s1: Int // Possible operands of the instruction
         val s2: Int
         val r: Int
 
@@ -139,7 +159,7 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
             else -> {
                 NoOpInstruction(label, line)
             }
-        }
+        }*/
     }
 
     /*
