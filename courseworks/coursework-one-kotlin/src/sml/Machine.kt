@@ -7,11 +7,13 @@ import java.lang.reflect.Constructor
 import java.util.Scanner
 import kotlin.collections.ArrayList
 import kotlin.reflect.KClass
+import kotlin.reflect.KParameter
 import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.declaredMemberFunctions
 import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 import kotlin.reflect.jvm.internal.impl.serialization.ProtoBuf
+import kotlin.reflect.jvm.jvmErasure
 
 /*
  * The machine language interpreter
@@ -104,10 +106,15 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
         val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
         //val cls = Class.forName(ins).kotlin
         val cls: KClass<String> = ins::class as KClass<String>
-        for (m in cls.constructors) {
-            println(m)
-        }
-        return cls.createInstance() as Instruction
+        val cons = cls.constructors.first()
+        val params = cons.parameters.map {
+            if (it.type.equals(Int)) {
+                scanInt()
+            } else {
+                scan()
+            }
+        } .toTypedArray()
+
 
         //val cons = cls.constructors
 

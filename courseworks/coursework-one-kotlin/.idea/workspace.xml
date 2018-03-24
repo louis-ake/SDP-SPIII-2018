@@ -18,10 +18,10 @@
       <file leaf-file-name="Machine.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sml/Machine.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
+            <state relative-caret-position="159">
+              <caret line="103" column="52" lean-forward="true" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
               <folding>
-                <element signature="e#13#471#0" expanded="true" />
+                <element signature="e#13#541#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -272,7 +272,7 @@
       <workItem from="1520704395693" duration="628000" />
       <workItem from="1521654604342" duration="5259000" />
       <workItem from="1521740173919" duration="848000" />
-      <workItem from="1521899204701" duration="1502000" />
+      <workItem from="1521899204701" duration="3085000" />
     </task>
     <task id="LOCAL-00001" summary="added class for subtract">
       <created>1520023992553</created>
@@ -351,11 +351,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520361567113</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="working on reflection conversion">
+      <created>1521903790698</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1521903790698</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52975000" />
+    <option name="totallyTimeSpent" value="54558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="989" height="1047" extended-state="0" />
@@ -435,7 +442,8 @@
     <MESSAGE value="adding code to machine and subclasses refactoring" />
     <MESSAGE value="all subclasses working" />
     <MESSAGE value="toString function added to bnz" />
-    <option name="LAST_COMMIT_MESSAGE" value="toString function added to bnz" />
+    <MESSAGE value="working on reflection conversion" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on reflection conversion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -528,7 +536,7 @@
         <state relative-caret-position="1350">
           <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -615,7 +623,7 @@
         <state relative-caret-position="153">
           <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -695,7 +703,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -705,7 +713,7 @@
         <state relative-caret-position="255">
           <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -735,7 +743,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -869,10 +877,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sml/Machine.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
+        <state relative-caret-position="159">
+          <caret line="103" column="52" lean-forward="true" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
           <folding>
-            <element signature="e#13#471#0" expanded="true" />
+            <element signature="e#13#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
