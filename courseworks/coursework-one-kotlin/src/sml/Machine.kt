@@ -103,9 +103,10 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
      */
     fun getInstruction(label: String): Instruction {
         val insL = scan()
-        val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
+        val ins = "sml.instructions." + insL.substring(0, 1).toUpperCase() + insL.substring(1) + "Instruction"
         //val cls = Class.forName(ins).kotlin
         val cls: KClass<String> = ins::class as KClass<String>
+        //cls = "sml.instructions." + cls + "Instruction"
         val cons = cls.constructors.first()
         val params = cons.parameters.map {
             if (it.type.equals(Int)) {
@@ -114,6 +115,7 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
                 scan()
             }
         } .toTypedArray()
+        return cons.call(params) as Instruction
 
 
         //val cons = cls.constructors
