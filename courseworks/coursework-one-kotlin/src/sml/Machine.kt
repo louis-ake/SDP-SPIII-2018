@@ -11,6 +11,7 @@ import kotlin.reflect.KParameter
 import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.declaredMemberFunctions
 import kotlin.reflect.full.memberFunctions
+import kotlin.reflect.full.safeCast
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 import kotlin.reflect.jvm.internal.impl.serialization.ProtoBuf
 import kotlin.reflect.jvm.jvmErasure
@@ -103,10 +104,8 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
      */
     fun getInstruction(label: String): Instruction {
         val insL = scan()
-        val ins = "sml.instructions." + insL.substring(0, 1).toUpperCase() + insL.substring(1) + "Instruction"
-        //val cls = Class.forName(ins).kotlin
-        val cls: KClass<String> = ins::class as KClass<String>
-        //cls = "sml.instructions." + cls + "Instruction"
+        val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
+        val cls = Class.forName("sml.instructions." + ins + "Instruction").kotlin
         val cons = cls.constructors.first()
         val params = cons.parameters.map {
             if (it.type.equals(Int)) {
@@ -114,12 +113,14 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
             } else {
                 scan()
             }
-        } .toTypedArray()
-        return cons.call(params) as Instruction
-
-
-        //val cons = cls.constructors
-
+        }.toTypedArray()
+        return try {
+            cons.call(*params) as Instruction
+        } catch (except1: ClassNotFoundException) {
+            NoOpInstruction(label, label)
+        } /*catch (except2: IllegalArgumentException) {
+            NoOpInstruction(cons.toString(), (params[0].toString() + params[1].toString()))
+        }*/
 
 
         /*val s1: Int // Possible operands of the instruction
