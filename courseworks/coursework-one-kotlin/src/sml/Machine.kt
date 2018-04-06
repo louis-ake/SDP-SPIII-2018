@@ -3,17 +3,8 @@ package sml
 import sml.instructions.*
 import java.io.File
 import java.io.IOException
-import java.lang.reflect.Constructor
 import java.util.Scanner
 import kotlin.collections.ArrayList
-import kotlin.reflect.KClass
-import kotlin.reflect.KParameter
-import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.declaredMemberFunctions
-import kotlin.reflect.full.memberFunctions
-import kotlin.reflect.full.safeCast
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
-import kotlin.reflect.jvm.internal.impl.serialization.ProtoBuf
 import kotlin.reflect.jvm.jvmErasure
 
 /*
@@ -105,24 +96,22 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
     fun getInstruction(label: String): Instruction {
         val insL = scan()
         val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
+        line = label + line
         val cls = Class.forName("sml.instructions." + ins + "Instruction").kotlin
         val cons = cls.constructors.first()
         val params = cons.parameters.map {
-            if (it.type.equals(Int)) {
+            if (it.type.jvmErasure == Int::class) {
                 scanInt()
-            } else {
-                scan()
-            }
+            } else scan()
         }.toTypedArray()
         return try {
             cons.call(*params) as Instruction
         } catch (except1: ClassNotFoundException) {
-            NoOpInstruction(label, label)
-        } /*catch (except2: IllegalArgumentException) {
+            NoOpInstruction(label, line)
+        }/*catch (except2: IllegalArgumentException) {
             NoOpInstruction(cons.toString(), (params[0].toString() + params[1].toString()))
         }*/
-
-
+    }
         /*val s1: Int // Possible operands of the instruction
         val s2: Int
         val r: Int
@@ -169,8 +158,9 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
             else -> {
                 NoOpInstruction(label, line)
             }
-        }*/
-    }
+        }
+    }    */
+
 
     /*
      * Return the first word of line and remove it from line. If there is no
@@ -197,12 +187,14 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
     private fun scanInt(): Int {
         val word = scan()
         if (word.length == 0) {
+            println("word length check")
             return Integer.MAX_VALUE
         }
 
         return try {
             Integer.parseInt(word)
         } catch (e: NumberFormatException) {
+            println("numberformatexception")
             Integer.MAX_VALUE
         }
     }
