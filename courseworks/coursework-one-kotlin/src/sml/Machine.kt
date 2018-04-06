@@ -106,63 +106,12 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
         }.toTypedArray()
         return try {
             cons.call(*params) as Instruction
-        } catch (except1: ClassNotFoundException) {
+        } catch (except: ClassNotFoundException) {
             NoOpInstruction(label, line)
-        }/*catch (except2: IllegalArgumentException) {
-            NoOpInstruction(cons.toString(), (params[0].toString() + params[1].toString()))
-        }*/
-    }
-        /*val s1: Int // Possible operands of the instruction
-        val s2: Int
-        val r: Int
-
-        val ins = scan()
-        return when (ins) { // replace with reflection
-            "add" -> {
-                r = scanInt()
-                s1 = scanInt()
-                s2 = scanInt()
-                AddInstruction(label, r, s1, s2)
-            }
-            "sub" -> {
-                r = scanInt()
-                s1 = scanInt()
-                s2 = scanInt()
-                SubInstruction(label, r, s1, s2)
-            }
-            "mul" -> {
-                r = scanInt()
-                s1 = scanInt()
-                s2 = scanInt()
-                MulInstruction(label, r, s1, s2)
-            }
-            "div" -> {
-                r = scanInt()
-                s1 = scanInt()
-                s2 = scanInt()
-                DivInstruction(label, r, s1, s2)
-            }
-            "out" -> {
-                s1 = scanInt()
-                OutInstruction(label, s1)
-            }
-            "lin" -> {
-                r = scanInt()
-                s1 = scanInt()
-                LinInstruction(label, r, s1)
-            }
-            "bnz" -> {
-                s1 = scanInt()
-                BnzInstruction(label, s1, label2 = scan())
-            }
-            else -> {
-                NoOpInstruction(label, line)
-            }
         }
-    }    */
+    }
 
-
-    /*
+    /**
      * Return the first word of line and remove it from line. If there is no
      * word, return ""
      */
