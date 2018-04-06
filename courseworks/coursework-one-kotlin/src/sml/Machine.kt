@@ -95,14 +95,19 @@ data class Machine(var pc: Int, val noOfRegisters: Int) {
      */
     fun getInstruction(label: String): Instruction {
         val insL = scan()
+        // First letter must be capitalised to be in the correct form
         val ins = insL.substring(0, 1).toUpperCase() + insL.substring(1)
+        // "line" needed for NoOp
         line = label + line
+        // define the runtime reference to the class in the correct format
         val cls = Class.forName("sml.instructions." + ins + "Instruction").kotlin
         val cons = cls.constructors.first()
         val params = cons.parameters.map {
+            // Use type erasure to make sure it matches the runtime type
             if (it.type.jvmErasure == Int::class) {
                 scanInt()
             } else scan()
+            // store the parameters in an array
         }.toTypedArray()
         return try {
             cons.call(*params) as Instruction
